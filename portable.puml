@@ -1,8 +1,9 @@
 @startuml portable
-!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+' !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+!include C4_Component.puml
 
-LAYOUT_TOP_DOWN
-#LAYOUT_WITH_LEGEND
+' LAYOUT_WITH_LEGEND
+
 Person(coach, "Coach", "The primary activities of a coach include tagging, review and PIP generation")
 Person(capUser, "Capture Device Operator", "This could be the camera recorder or the coach doing live tagging")
 System(captureSystem, "Capture System", "The system to capture media using recording devices and tagging devices")
@@ -15,7 +16,6 @@ System_Boundary(portable, "Portable System"){
     Container(streamDeck, "Stream Deck Service", "C++, Node", "Hosts plugins that talk to the stream deck keypad and the Editing app")
     Container(broadcast, "Broadcast Service", "C++", "The broadcast service that opens a scheduled channel for broadcast")
     Container(webrtc, "Streaming Server", "WebRTC/HLS", "Stream the media exposed by media service to external systems")
-    
 }
 System(review, "Playback & Review", "The system includes live playback of media from the On-Premise system and the ability to add review")
 
@@ -25,7 +25,6 @@ Rel(coach, edit, "Edits PIP")
 Rel(webrtc, review, "Sends Media")
 Rel(coach, review, "Uses")
 Rel(review, media, "Edit Media")
-
 Rel(captureSystem, enc, "Sends Raw Stream")
 Rel(captureSystem, media, "Sends media files")
 Rel(enc, media, "Sends media files")

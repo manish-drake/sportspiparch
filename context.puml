@@ -1,0 +1,51 @@
+@startuml context
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN
+#LAYOUT_WITH_LEGEND
+
+Person(capUser, "Capture Device Operator", "This could be the camera recorder or the coach doing live tagging")
+System(captureSystem, "Capture System", "The system to capture media using recording devices and tagging devices")
+Rel(capUser, captureSystem, "Create Media and Tagging resources")
+
+System(root, "On-Premise System", "The primary system installed on premise that records media, imports media from other systems and exposes media to other systems")
+Person(admin, "Root Admin", "Installs systems on premise and handles jobs related to system")
+Rel(admin, root, "Responsible for")
+
+System_Ext(extension, "Extension Systems", "Possible provides means to extend our system up to other systems, like Hudl or MS Teams")
+Rel(extension, root, "Extends")
+System_Ext(mkt, "Marketing & Documentation", "The Sports PIP marketing and documentation website")
+Person_Ext(man, "MAN", "The person with Money, Authority & Need")
+Rel(man, mkt, "Uses Trials and buys license")
+SystemDb_Ext(license, "License Inventory", "The inventory for trials, licenses and subscriptions")
+Rel(mkt, license, "Manages")
+Rel(admin, license, "Recieve License")
+System(azure, "Azure Cloud Services", "The collection of various services to be used for revenue licenses")
+Rel(root, azure, "Upload media")
+Person(community, "Community", "Anyone interested in Sports PIP")
+Rel(azure, community, "Share")
+
+System_Ext(hudl, "Hudl..")
+System_Ext(teams, "MS Teams..")
+Rel(extension, hudl, "Exports")
+Rel(extension, teams, "Exports")
+
+Rel(captureSystem, root, "Saves data for Home")
+
+System(portable, "Portable System", "The secondary system that can be potentially moved and connected to any network and receive Media")
+Rel(captureSystem, portable, "Saves data for Away")
+Rel(portable, root, "Exports media")
+
+
+Person(coach, "Coach", "The primary activities of a coach include tagging, review and PIP generation")
+System(review, "Playback & Review", "The system includes live playback of media from the On-Premise system and the ability to add review")
+Rel(review, portable, "Edits Media")
+
+Rel(coach, review, "Uses")
+Rel(review, root, "Edit Media")
+
+System_Ext(mediaBroadcast, "Media Broadcast", "Makes the game media available for general broadcast")
+Rel(root, mediaBroadcast, "Provides Media")
+Rel(portable, mediaBroadcast, "Provides Media")
+
+@enduml

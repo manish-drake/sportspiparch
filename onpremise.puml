@@ -1,0 +1,61 @@
+@startuml on-premise
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN
+#LAYOUT_WITH_LEGEND
+Person(capUser, "Capture Device Operator", "This could be the camera recorder or the coach doing live tagging")
+Person(authUser, "Authorised System User", "Creates the scheduled events on the system and handles content")
+System(captureSystem, "Capture System", "The system to capture media using recording devices and tagging devices")
+Rel(capUser, captureSystem, "Create Media and Tagging resources")
+
+System(portable, "Portable System", "The secondary system that can be potentially moved and connected to any network and recieve Media")
+
+System_Boundary(root, "On-Premise"){
+    Container(webapp, "sportspip.com", "Angular", "The web application that let's user handle Admin privelages, CMS, and the PIPs to some extent")
+    Container(eventBus, "SPP Event Bus", "tbd", "The event bus is a pub/sub service that receives events from the pipeline")    
+    Container(pipeline, "PIP Pipeline (SPP)", "Node.js", "The service handles the PIP creation pipeline for scheduled events")
+    ContainerDb(cms, "CMS", "STRAPI", "The service includes all admin data related to the customer")
+    Container(enc, "IPCam Stream Encoder", "MS Media Foundation", "The service that captures raw stream from IP Cams and encodes them into standard media format")
+    ContainerDb(media, "Media Service", "STRAPI", "Receives/Exposes media files from various sources and organizes them in a repo")
+    Container(broadcast, "Broadcast Service", "C++", "The broadcast service that opens a scheduled channel for broadcast")
+    Container(webrtc, "Streaming Server", "WebRTC/HLS", "Stream the media exposed by media service to external systems")
+    
+}
+Rel(webrtc, cms, "Authenticates requests")
+System(html, "HTML Player Apps", "Various applications using media without downloading")
+Rel(webrtc, html, "Sends media")
+
+
+Person(coach, "Coach", "The primary activities of a coach include tagging, review and PIP generation")
+
+System(review, "Playback & Review", "The system includes live playback of media from the On-Premise system and the ability to add review")
+
+Rel(coach, portable, "Uses")
+Rel(coach, review, "Uses")
+Rel(review, media, "Edit Media")
+Rel(webrtc, review, "Sends Media")
+Rel(webapp, cms, "CRUD")
+Rel(portable, media, "Exports or Edits media & tagging data")
+
+Rel(captureSystem, media, "Sends captured media to media service")
+Rel(captureSystem, enc, "Sends Raw Stream")
+Rel(enc, media, "Sends media files")
+
+Person(admin, "Root Admin", "Installs systems on premise and handles jobs related to system")
+Rel(eventBus, captureSystem, "Subscribe")
+Rel(pipeline, eventBus, "Publish")
+Rel(webapp, pipeline, "Manage")
+Rel(admin, webapp, "Maintains admin privelages and other content on server")
+Rel(authUser, webapp, "Create a Pipeline for a Scheduled event")
+
+System_Ext(mediaBroadcast, "Media Broadcast", "Makes the game media available for general broadcast")
+Rel(webapp, broadcast, "Schedule broadcast")
+Rel(broadcast, media, "Uses")
+Rel(broadcast, mediaBroadcast, "Provides Media")
+
+
+
+
+
+
+@enduml

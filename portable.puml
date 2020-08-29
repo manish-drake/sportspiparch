@@ -1,0 +1,47 @@
+@startuml portable
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN
+#LAYOUT_WITH_LEGEND
+Person(coach, "Coach", "The primary activities of a coach include tagging, review and PIP generation")
+Person(capUser, "Capture Device Operator", "This could be the camera recorder or the coach doing live tagging")
+System(captureSystem, "Capture System", "The system to capture media using recording devices and tagging devices")
+Rel(capUser, captureSystem, "Create scheduled event Media and Tagging resources")
+Rel(coach, captureSystem, "Create unscheduled media and tagging resource")
+System_Boundary(portable, "Portable System"){
+    Container(enc, "IPCam Stream Encoder", "MS Media Foundation", "The service that captures raw stream from IP Cams and encodes them into standard media format")
+    ContainerDb(media, "Media Service", ".NET", "Receives media files from various sources and organizes them in a repo")
+    Container(edit, "Win10 Editing App", ".Net", "Imports media, creates PIPs, allows coaches to review and annotate recordings")
+    Container(streamDeck, "Stream Deck Service", "C++, Node", "Hosts plugins that talk to the stream deck keypad and the Editing app")
+    Container(broadcast, "Broadcast Service", "C++", "The broadcast service that opens a scheduled channel for broadcast")
+    Container(webrtc, "Streaming Server", "WebRTC/HLS", "Stream the media exposed by media service to external systems")
+    
+}
+System(review, "Playback & Review", "The system includes live playback of media from the On-Premise system and the ability to add review")
+
+System(html, "HTML Player Apps", "Various applications using media without downloading")
+Rel(webrtc, html, "Sends media")
+Rel(coach, edit, "Edits PIP")
+Rel(webrtc, review, "Sends Media")
+Rel(coach, review, "Uses")
+Rel(review, media, "Edit Media")
+
+Rel(captureSystem, enc, "Sends Raw Stream")
+Rel(captureSystem, media, "Sends media files")
+Rel(enc, media, "Sends media files")
+Rel(edit, media, "Uses")
+Rel(streamDeck, media, "Sends Tagging Data")
+Rel(coach, streamDeck, "Tagging live media")
+
+
+
+System(root, "On-Premise System", "The primary system installed on premise that records media, imports media from other systems and exposes media to other systems")
+Rel(edit, root, "Exports media")
+
+System_Ext(mediaBroadcast, "Media Broadcast", "Makes the game media available for general broadcast")
+Rel(edit, broadcast, "Schedule broadcast")
+Rel(broadcast, media, "Uses")
+Rel(broadcast, mediaBroadcast, "Provides Media")
+
+
+@enduml

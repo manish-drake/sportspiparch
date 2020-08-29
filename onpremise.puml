@@ -4,7 +4,7 @@
 
 ' LAYOUT_TOP_DOWN
 ' LAYOUT_WITH_LEGEND
-Person(capUser, "Capture Device Operator", "This could be the camera recorder or the coach doing live tagging")
+Person(capUser, "Video Recording Staff", "This could be the camera recorder or the coach doing live tagging")
 Person(authUser, "Authorised System User", "Creates the scheduled events on the system and handles content")
 System(captureSystem, "Capture System", "The system to capture media using recording devices and tagging devices")
 Rel(capUser, captureSystem, "Create Media and Tagging resources")

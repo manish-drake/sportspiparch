@@ -3,10 +3,10 @@
 ' !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
 !include C4_Component.puml
 
-LAYOUT_TOP_DOWN
-#LAYOUT_WITH_LEGEND
+' LAYOUT_TOP_DOWN
+' LAYOUT_WITH_LEGEND
 
-Person(capUser, "Capture Device Operator", "This could be the camera recorder or the coach doing live tagging")
+Person(capUser, "Video Recording Staff", "This could be the camera recorder or the coach doing live tagging")
 System(captureSystem, "Capture System", "The system to capture media using recording devices and tagging devices")
 Rel(capUser, captureSystem, "Create Media and Tagging resources")
 

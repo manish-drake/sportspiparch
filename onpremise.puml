@@ -2,7 +2,7 @@
 ' !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
 !include C4_Component.puml
 
-' LAYOUT_TOP_DOWN
+LAYOUT_TOP_DOWN
 ' LAYOUT_WITH_LEGEND
 Person(capUser, "Video Recording Staff", "This could be the camera recorder or the coach doing live tagging")
 Person(authUser, "Authorised System User", "Creates the scheduled events on the system and handles content")

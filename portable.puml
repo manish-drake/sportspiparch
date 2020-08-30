@@ -3,6 +3,7 @@
 !include C4_Component.puml
 
 ' LAYOUT_WITH_LEGEND
+LAYOUT_TOP_DOWN
 
 Person(coach, "Coach", "The primary activities of a coach include tagging, review and PIP generation")
 Person(capUser, "Video Recording Staff", "This could be the camera recorder or the coach doing live tagging")

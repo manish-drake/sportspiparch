@@ -45,9 +45,12 @@ deactivate pip
 deactivate sink
 deactivate Metadata
 
-control "Uploader Client" as client
+control "Upload Client" as client
 eve -> client: Upload(metadata, pip)
 activate client
+
+==Start PIP Uploading==
+
 
 create entity "pip.zip" as zip
 client -> zip: Create()
@@ -56,7 +59,7 @@ client --> Metadata: AddZipChecksum(checksum)
 client -> zip: CreateChunks()
 zip --> client: return(handle_to_chunks)
 box Server
-    client -> Server: << ConnectDuplex >>
+    client -> "Upload Server" as Server: << ConnectDuplex >>
     note right
         Only known clients
         pre-authorized by
@@ -93,6 +96,7 @@ box Server
             activate repo
         else BadUpload!
             Server -> client: fetchAgain()
+            destroy partial
         end
     deactivate Server
 
@@ -101,3 +105,5 @@ box Server
 end box
 client --> eve: NotifyUploadComplete()
 
+
+==End PIP Uploading==

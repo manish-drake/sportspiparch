@@ -1,0 +1,93 @@
+title File Upload Service
+
+
+boundary "Client App" as app
+create entity fileA
+app -> fileA: getHandle()
+fileA --> app: return(handle)
+
+control "Upload Client" as client
+activate client
+app -> client: Upload(fileA)
+
+control "Upload Server" as server
+activate server
+client -> server: Request("openSession", clientID)
+server --> client: Response("okay")
+activate server
+client -> server:Request("fetch", metadata)
+note left
+    The JSON metadata  
+    can include, filename,
+    checksum, owner, 
+    event, source etc.
+end note 
+server --> client:Response("send_chunk_info")
+client -> server: Request("chunk_info", chunk_info)
+note left
+    The chunk_info is
+    the part_info of the 
+    file partitioned into
+    equal parts by getting
+    fileSize divided by 
+    F. Here F is the
+    factor based on the 
+    available bandwidth
+end note
+create entity chunkIndex
+server -> chunkIndex: Create()
+note right
+    The chunk_index already
+    has details of the 
+    list of chunks to be 
+    uploaded by the client.
+    Sanctity of the file is
+    verified by the chunkIndex.
+end note
+
+create entity fileBlob
+server -> fileBlob: Create()
+
+
+loop do while any file_chunks are pending
+    server -> chunkIndex: CheckForMissingChunks()
+    loop for i == 0; i < n; i++
+        create "Server endpoint" as srvep
+        server -> srvep: CreateEP(chunk_info)
+        note left
+            n is the maximum number of
+            concurrent connections that
+            the server can afford to have
+            depending on its available 
+            bandwidth and the other 
+            connections currently active 
+        end note
+        server --> client: Response("upload", chunk_info, to_ep_detail)
+        activate srvep
+
+        create "Client endpoint" as clnep
+        client -> clnep: CreateEP(server_ep_detail)
+        activate clnep
+        clnep -> srvep: << connect >>
+        srvep -> clnep: Fetch(chunk_info)
+        clnep -> srvep: Upload(chunk)
+        srvep -> srvep: Verify(chunk_info)
+        srvep -> fileBlob: Add(chunk)
+        srvep --> chunkIndex: Update(chunk_info)
+        activate fileBlob
+        srvep --> clnep: << disconnect >>
+        destroy clnep
+        destroy srvep
+    end        
+end
+server --> Repository:Save(fileBlob)
+server --> client:Response("upload_complete")
+client -> server: Request("close_session")
+server --> client: Response("okay")
+activate Repository
+deactivate server
+deactivate chunkIndex
+deactivate fileBlob
+deactivate server
+
+

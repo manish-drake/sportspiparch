@@ -20,7 +20,6 @@ System_Boundary(root, "On-Premise"){
     ContainerDb(media, "Media Service", "STRAPI", "Receives/Exposes media files from various sources and organizes them in a repo")
     Container(broadcast, "Broadcast Service", "C++", "The broadcast service that opens a scheduled channel for broadcast")
     Container(webrtc, "Streaming Server", "WebRTC/HLS", "Stream the media exposed by media service to external systems")
-    
 }
 Rel(webrtc, cms, "Authenticates requests")
 System(html, "HTML Player Apps", "Various applications using media without downloading")

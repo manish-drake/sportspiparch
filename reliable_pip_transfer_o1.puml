@@ -45,17 +45,18 @@ deactivate pip
 deactivate sink
 deactivate Metadata
 
-control "Uploader Client" as client
+control "Upload Client" as client
 eve -> client: Upload(metadata, pip)
+==Start PIP Uploading==
 activate client
 box Server
-    client -> Server: << ConnectDuplex >>
+    client -> "Upload Server" as Server: << ConnectDuplex >>
     note right
         Only known clients
         pre-authorized by
         the server can connect
     end note
-    client -> Server: Upload(Metadata)
+    client -> Server: Upload(metadata)
     activate Server
 
     Server -> Server: ReadMetadata()
@@ -82,4 +83,6 @@ box Server
     Server -> client: << CloseConnection >>
 end box
 client --> eve: NotifyUploadComplete()
+
+==End PIP Uploading==
 

@@ -1,0 +1,85 @@
+title Reliable PIP Transfer (Option 1)
+
+
+actor "Video Recording Staff" as vidrec
+
+vidrec -> "Scheduled Event" as eve: OpenEvent()
+activate eve
+
+create entity Metadata
+eve -> Metadata: Create()
+note right
+    The metadata includes 
+    general event information,
+    local URI of media
+    and checksum
+end note
+
+create "Media Sink" as sink
+eve --> sink: CreateMediaSink()
+
+
+create entity "PIP Folder" as pip
+sink -> pip: Create()
+
+group Iterate, until event completes
+    vidrec -> eve: StartRecording()
+    activate sink
+    eve -> sink: Record()
+
+    vidrec -> eve: PauseRecording()
+    eve -> sink: Pause()
+
+    activate pip
+    sink -> pip: SaveVideo()
+    
+    activate Metadata
+    sink -> Metadata: Save(name, checksum, ..)
+end
+
+vidrec -> eve: CloseEvent()
+pip --> eve: return(handle)
+Metadata --> eve: return(handle)
+
+deactivate pip
+deactivate sink
+deactivate Metadata
+
+control "Uploader Client" as client
+eve -> client: Upload(metadata, pip)
+activate client
+box Server
+    client -> Server: << ConnectDuplex >>
+    note right
+        Only known clients
+        pre-authorized by
+        the server can connect
+    end note
+    client -> Server: Upload(Metadata)
+    activate Server
+
+    Server -> Server: ReadMetadata()
+    activate Server
+
+    loop for each file in Metadata
+        Server -> client: Request(File n)
+        note right
+            This should be a 
+            multi-threaded 
+            fetching.
+        end note
+        client --> Server: Response(File n)
+        Server -> Server: VerifyChecksum()
+        alt ChecksumMatches!
+            Server -> "PIPs Repository" as repo: Save()
+            activate repo
+        else BadUpload!
+            Server -> client: RequestAgain(File n)
+        end
+    end
+    deactivate Server
+    Server -> repo: IndexNewPIP()
+    Server -> client: << CloseConnection >>
+end box
+client --> eve: NotifyUploadComplete()
+

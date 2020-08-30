@@ -1,0 +1,103 @@
+title Reliable PIP Transfer (Option 2)
+
+
+actor "Video Recording Staff" as vidrec
+
+vidrec -> "Scheduled Event" as eve: OpenEvent()
+activate eve
+
+create entity Metadata
+eve -> Metadata: Create()
+note right
+    The metadata includes 
+    general event information,
+    local URI of media
+    and checksum
+end note
+
+create "Media Sink" as sink
+eve --> sink: CreateMediaSink()
+
+
+create entity "PIP Folder" as pip
+sink -> pip: Create()
+
+group Iterate, until event completes
+    vidrec -> eve: StartRecording()
+    activate sink
+    eve -> sink: Record()
+
+    vidrec -> eve: PauseRecording()
+    eve -> sink: Pause()
+
+    activate pip
+    sink -> pip: SaveVideo()
+    
+    activate Metadata
+    sink -> Metadata: Save(name, checksum, ..)
+end
+
+vidrec -> eve: CloseEvent()
+pip --> eve: return(handle)
+Metadata --> eve: return(handle)
+
+deactivate pip
+deactivate sink
+deactivate Metadata
+
+control "Uploader Client" as client
+eve -> client: Upload(metadata, pip)
+activate client
+
+create entity "pip.zip" as zip
+client -> zip: Create()
+zip --> client: return(checksum)
+client --> Metadata: AddZipChecksum(checksum)
+client -> zip: CreateChunks()
+zip --> client: return(handle_to_chunks)
+box Server
+    client -> Server: << ConnectDuplex >>
+    note right
+        Only known clients
+        pre-authorized by
+        the server can connect
+    end note
+
+
+    client -> Server: Upload(chunk_count, metadata)
+    activate Server
+    activate client
+
+    create entity "pip.partial" as partial
+    Server -> partial: Create()
+    activate Server
+        partial --> Server: return(handle)
+        Server --> client: fetch()
+
+        loop for each chunk in pip.zip
+            client -> Server: Upload(chunk n)
+            note right
+                This should be a 
+                multi-threaded 
+                upload.
+            end note
+            Server -> partial: Add(chunk)
+        end
+        Server -> partial: concatenate()
+
+        Server -> partial: getChecksum()        
+        partial --> Server: return(checksum)
+
+        alt partial.checksum == metadata.checksum?
+            Server -> "PIPs Repository" as repo: Save()
+            activate repo
+        else BadUpload!
+            Server -> client: fetchAgain()
+        end
+    deactivate Server
+
+    Server -> repo: IndexNewPIP()
+    Server -> client: << CloseConnection >>
+end box
+client --> eve: NotifyUploadComplete()
+

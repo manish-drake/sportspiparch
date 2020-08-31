@@ -1,4 +1,4 @@
-@startuml context
+@startuml Context
 
 ' !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
 !include C4_Component.puml

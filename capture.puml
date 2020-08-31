@@ -1,0 +1,41 @@
+@startuml Capture System
+' !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+!include C4_Component.puml
+
+' LAYOUT_WITH_LEGEND
+LAYOUT_TOP_DOWN
+
+Person(capUser, "Video Recording Staff", "This could be the camera recorder or the coach doing live tagging")
+System_Boundary(root, "On-Premise System"){
+    Container(eventBus, "SPP Event Bus", "tbd", "The event bus is a pub/sub service that receives events from the pipeline")    
+    ContainerDb(media, "Media Service", "STRAPI", "Receives/Exposes media files from various sources and organizes them in a repo")
+    Container(enc, "IPCam Stream Encoder", "MS Media Foundation", "The service that captures raw stream from IP Cams and encodes them into standard media format")
+    
+}
+
+System_Boundary(capture, "Capture System"){
+    Container(mobile, "Mobile Recording App", "Ionic/React/Flutter", The app with used to capture the event and export media to media service.)
+    Container(ip, "IP Cam", "RTSP", "The IP Cams, streaming raw stream to stream encoder")
+    Container(cam, "Other Cameras", "Digital", "The digital cameras for recording and streaming video directly to the media service")
+}
+System_Boundary(portable, "Portable System"){
+    ContainerDb(mediaP, "Media Service", ".NET", "Receives media files from various sources and organizes them in a repo")
+    Container(edit, "Win10 Editing App", ".Net", "Imports media, creates PIPs, allows coaches to review and annotate recordings")
+    Container(encP, "IPCam Stream Encoder", "MS Media Foundation", "The service that captures raw stream from IP Cams and encodes them into standard media format")
+}
+
+Rel(ip, enc, "Sends Raw Stream", "RTSP")
+Rel(cam, media, "Sends Media Stream", "TBD")
+Rel(mobile, media, "Send Media", "TCP")
+Rel(ip, encP, "Sends Raw Stream", "RTSP")
+Rel(cam, mediaP, "Sends Media Stream", "TBD")
+Rel(mobile, mediaP, "Send Media", "TCP")
+Rel(edit, mobile, "Control Recording", "TCP")
+Rel(eventBus, mobile, "Subscribe")
+Rel(mobile, media, "Sends captured media to media service")
+
+Rel(capUser, mobile, "Create Media and Tagging resources")
+Rel(capUser, ip, "Create Media and Tagging resources")
+Rel(capUser, cam, "Create Media and Tagging resources")
+
+@enduml

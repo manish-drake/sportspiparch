@@ -1,4 +1,4 @@
-@startuml on-premise
+@startuml On-Premise
 ' !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
 !include C4_Component.puml
 

@@ -1,0 +1,34 @@
+@startuml Playback & Review
+!include ../C4-PlantUML/C4_Component.puml
+
+LAYOUT_TOP_DOWN
+
+Person(coach, "Coach", "The primary activities of a coach include tagging, review and PIP generation")
+System_Boundary(review, "Playback & Review"){
+    Container(master, "Master App", "iOS/Android", "The app with provisions for coach to perform many online and offline actions")
+    Container(keypad, "Stream Deck", "Qt", "The device with a customizable keypad to send tagging data.")
+       
+}
+System_Boundary(root, "On-Premise System"){
+    Container(webrtc, "Streaming Server", "WebRTC/HLS", "Stream the media exposed by media service to external systems")
+    ContainerDb(mediaR, "Media Service", "STRAPI", "Receives/Exposes media files from various sources and organizes them in a repo")
+    
+}
+System_Boundary(portable, "Portable System"){
+    ContainerDb(media, "Media Service", ".NET", "Receives media files from various sources and organizes them in a repo")
+    Container(webrtcP, "Streaming Server", "WebRTC/HLS", "Stream the media exposed by media service to external systems")
+    Container(streamDeck, "Stream Deck Service", "C++, Node", "Hosts plugins that talk to the stream deck keypad and the Editing app")
+    
+}
+
+Rel(keypad, streamDeck, "Tagging live media")
+Rel(master, media, "Edits Media")
+Rel(master, mediaR, "Edits Media")
+
+Rel(coach, master, "Uses")
+Rel(coach, keypad, "Uses")
+Rel(webrtc, master, "Sends Media")
+Rel(webrtcP, master, "Sends Media")
+
+
+@enduml

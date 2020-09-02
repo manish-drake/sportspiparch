@@ -1,6 +1,6 @@
 @startuml Portable
 ' !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
-!include C4_Component.puml
+!include ../C4-PlantUML/C4_Component.puml
 
 ' LAYOUT_WITH_LEGEND
 LAYOUT_TOP_DOWN
@@ -31,7 +31,7 @@ Rel(captureSystem, media, "Sends media files")
 Rel(enc, media, "Sends media files")
 Rel(edit, media, "Uses")
 Rel(streamDeck, media, "Sends Tagging Data")
-Rel(coach, streamDeck, "Tagging live media")
+Rel(review, streamDeck, "Tagging live media")
 
 
 

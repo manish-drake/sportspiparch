@@ -1,0 +1,43 @@
+@startuml Spike SP4420
+actor "User" as user
+user -> "Event Generator\n(simulator)" as evgen: uses()
+activate evgen
+control "NT Service" as nt
+activate nt
+database "Media Repository" as repo
+create control "Queue Processor" as qp
+nt -> qp: Init()
+boundary "Laptop/iPad\n(Consumers)" as cns
+cns -> qp: Subscribe()
+evgen -> nt: StartEvent(taggingData)
+create control "Queue" as q
+nt -> q: Add(startEventTaggingData)
+activate q
+hnote over evgen: after 5/10/20\nminutes
+evgen -> nt: StopEvent(taggingData)
+nt -> q: Add(stopEventTaggingData)
+loop till true
+    qp -> q: ReadEvents()
+    q --> qp: return(eventData)
+    collections "Sources\n(iPhones/Androids)" as src
+    alt Event = Start?
+        qp -> src: StartEvent()
+        qp --> cns: Publish(startEventTaggingData)
+        create entity "Video File\n(H.264/H.265)" as video
+        src -> video: Encode()
+        activate video
+    else Event = Stop?
+        qp -> src: StopEvent()
+        src -> video: Save()
+        deactivate video
+    end
+    src --> qp: eventCompleted(eventMetadata, mediaMetadata)
+    qp -> src: fetchMedia()
+    src --> repo: return(mediaFile, TaggingData)
+    qp --> cns: Publish(saveEventTaggingData)
+end
+cns -> nt: fetchVideo(metadata)
+repo --> cns: return(video)
+user -> cns: view(newVideo?)
+
+@enduml

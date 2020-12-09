@@ -16,6 +16,7 @@ activate q
 hnote over evgen: after 5/10/20\nminutes
 evgen -> nt: StopEvent(taggingData)
 nt -> q: Add(stopEventTaggingData)
+par Parallel
 loop till true
     qp -> q: ReadEvents()
     q --> qp: return(eventData)
@@ -35,6 +36,7 @@ loop till true
     qp -> src: fetchMedia()
     src --> repo: return(mediaFile, TaggingData)
     qp --> cns: Publish(saveEventTaggingData)
+end
 end
 cns -> nt: fetchVideo(metadata)
 repo --> cns: return(video)

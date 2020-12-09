@@ -1,0 +1,39 @@
+@startuml Subset Videos
+title Subset Videos
+actor "User" as usr
+boundary "Tagging UI" as tag
+boundary "IP Cams" as ip
+control "Streaming Service" as strm
+group Record and Transfer
+    usr -> ip: start()
+    note over tag,strm
+    	The process till the streaming service 
+        is ready to send media to Coaches
+    end note
+    usr -> ip: stop()
+end
+boundary "Coaches'\nTablets\Laptops" as coach
+create entity "Settings\n(Media Transfer)" as sett
+coach -> sett
+strm -> coach: transfer(metadata, thumbnail, mediaFileHandle)
+coach -> sett: checkSettings()
+alt Is offensive video required?
+    sett --> coach: return(decision)
+else Is defensive video required?
+    sett --> coach: return(decision)
+else Is the video with the camera angle required?
+    sett --> coach: return(decision)
+end
+
+alt If decision == auto-download?
+    coach -> strm: fetch(mediaFileHandle)
+    strm --> coach: return(mediaFileBlocks)
+else
+    coach -> coach: Display(metadata, thumbnail)
+    opt User chooses to fetch video (optional)
+        usr -> coach: ShowVideo()
+        coach -> strm: fetch(mediaFileHandle)
+        strm --> coach: return(mediaFileBlocks)
+    end
+end
+@enduml

@@ -1,0 +1,40 @@
+@startuml File Transfer Style Implementations 
+title File Transfer Style Implementations 
+actor "User" as usr
+boundary "Tagging UI/iPad" as tag
+box [serialized on the sender's \ndevice, but not visible to\nthe application after sending] 
+    entity "Message Queue\n(ZMQ, RabbitMQ)" as mq
+end box
+control "Streaming/Encoding\nService" as strm
+box [running in background]
+    create "Dispatcher" as dsp
+    strm -> dsp: start()
+end box
+collections "Cameras" as cams
+== Start Recording ==
+note over tag, cams
+This includes all the sequences
+as mentioned in the message_queue.puml
+diagram.
+end note
+== Stop Recording ==
+dsp -> mq: enque(notifyFileSaved{metadata})
+tag -> mq: deque(notifyFileSaved{metadata})
+tag -> mq: enque(fetchVideo{metadata})
+dsp -> mq: deque(fetchVideo{metadata})
+box The file transfer client can follow\nany of the available protocols\nused for file transfer and most\nappropriate for our use-cases
+create control "File Transfer Server" as fts
+strm -> fts: open(endpoint, metadata)
+note right
+https://en.wikipedia.org
+/wiki/Comparison_of_file
+_transfer_protocols
+end note
+dsp -> mq: enque(notifyEndpoint{endpoint, metadata})
+tag -> mq: deque(notifyEndpoint{endpoint, metadata})
+create control "File Transfer Client" as ftc
+tag -> ftc: open(endpoint, metadata)
+ftc -> fts: fetchVideo(metadata)
+fts --> ftc: return(fileStream)
+
+@enduml

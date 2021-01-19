@@ -1,0 +1,27 @@
+@startuml Message Queue
+
+
+boundary emu as "Controller\n(emmulating Stream Deck)"
+create mq_emu as "MQ\n(Controller)"
+emu -> mq_emu: listen(port:8880)
+control srv as "Service\n(Win/Linux)"
+create mq_srv as "MQ\n(Service)"
+srv -> mq_srv: listen(port:8880)
+boundary src as "Sources\n(Android/iOS)"
+create mq_src as "MQ\n(Source)"
+src -> mq_src: listen(port:8880)
+
+
+emu -> mq_emu: send(to:source, msg:start)
+mq_emu -> mq_src: zmq(msg:start)
+mq_src --> src: notify(received:start)
+create entity vid as "Media File"
+src -> vid: create(metadata)
+src -> mq_src: send(to:<subscribers>, msg:{mediaAvailable, metadata})
+
+
+@enduml
+
+@startuml File Transfer
+
+@enduml

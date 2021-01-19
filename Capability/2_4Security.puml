@@ -1,8 +1,8 @@
 @startuml Security using JWT
 title Security using JWT
 actor "User" as user
-collections "Consumers" as cons
-collections "Sources" as srcs
+collections "Consumer Devices" as cons
+collections "Source Devices" as srcs
 control "Directory Service" as dir
 srcs -> dir: register(credentials)
 

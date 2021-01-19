@@ -1,0 +1,37 @@
+@startuml Factory Cal
+ !include ../c4puml-cn/c4puml/C4_Component.puml
+
+
+System_Boundary(facal, "Factory-Cal"){
+    System_Ext(devcon, "Dev-Con", "The console application that talks to the instruments and can be used on the terminal to run any SCPI/VISA commands using FACAL command aliases.")
+    SystemDb(devcore, "Dev-Core", "Model classes for the project. These classes inherit the PersistableBase class from the Sqlite-core project to serialize/deserialize")
+    System(devdata, "Dev-Data", "The Parser classes that manage and convert FACAL based command aliases into the device specific commands.")
+    System(model, "Dev-Model", "The controller classes that act as a coupling between the UI and the data & client/server classes.")
+    System(ui, "Dev-UI", "All the UI related classes and scripts required to create the screens and handle user interaction in the application")
+    System(sql, "Sqlite-Core", "A sqlite framework facilitating CRUD operations run on Sqlite DB.")
+    System(client, "TS-Client", "The client code handling communication between Facal applicatioon and the SDR-Omni (test-)server")
+    System(comms, "TS-Comms", "The test-module wise grouped controller classes with functions to organize Tests specific communication between Facal and SDR-Omni (test-)server")
+    System(data, "TS-Data", "A wrapper project with SDR-Omni messages pulled from data repository of the testserver project")
+
+    Rel(ui, model, "Uses the complex data objects provided by the project to show to the user and listens to the user interaction", "C++/Qt/QML")
+    Rel(devcore, sql, "Uses the API of Sqlite-core to perform CRUD operation on the sqlite DB", "C/C++/Sql")
+    Rel(model, devcore, "Uses the core classes to create collections that can be viewd or modified by the user and later saved back to the DB", "C++/Qt")
+    Rel(model, devcon, "Uses the console application to invoke commands and read results to further pass on to the UI", "Qt/C++")
+    Rel(model, comms, "Uses the Ts-Comms project to execute commands on SDR-Omni (test-)server.", "C++/Qt")
+    Rel(comms, client, "Uses the client classes to actually send messages to the server over network", "C++/ZMQ")
+    Rel(devcon, devdata, "Uses the command parser to convert Facal aliases into device specific commands", "C++")
+    Rel(model, devdata, "Uses the resource entity that represents the calibration devices available to the system", "Qt/C++")
+    Rel(comms, data, "Uses the testserver based message classes to communicate with the SDR-Omni (test-)server", "C++")
+    Rel(ui, devcore, "Uses the data classes to serialize the prerequisite settings, report formats and for some screens the UI for the project", "C++/Qt")
+}
+
+System_Ext(ts, "Test-Server", "The server application running on the SDR-Omni device")
+System_Ext(instr, "Calibration Devices", "The Signal Generators or the Power Meters or any other devices used for calibration")
+Rel(client, ts, "Exchanges messages between the Facal app and the SDR-Omni (test-)server", "C++/ZMQ")
+Rel(devcon, instr, "Exchanges messages between the Facal app and the calibration devices", "C++/SICL/VISA")
+
+
+
+
+
+ @enduml

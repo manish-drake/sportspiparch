@@ -1,10 +1,11 @@
 @startuml Context
 
 ' !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
-!include ../C4-PlantUML/C4_Component.puml
+ !include ../c4puml-cn/c4puml/C4_Component.puml
+ '!include ../c4puml-cn/core.puml
 
-' LAYOUT_TOP_DOWN
-' LAYOUT_WITH_LEGEND
+  LAYOUT_TOP_DOWN
+  'LAYOUT_AS_SKETCH
 
 Person(capUser, "Video Recording Staff", "This could be the camera recorder or the coach doing live tagging")
 System(captureSystem, "Capture System", "The system to capture media using recording devices and tagging devices")

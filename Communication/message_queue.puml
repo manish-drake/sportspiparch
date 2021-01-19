@@ -1,0 +1,47 @@
+@startuml Message Queuing Implementation
+title Message Queuing Implementation
+
+actor "User" as usr
+
+boundary "Tagging UI/iPad" as tag
+box [serialized on the sender's \ndevice, but not visible to\nthe application after sending] 
+    entity "Message Queue\n(ZMQ, RabbitMQ)" as mq
+end box
+control "Streaming/Encoding\nService" as strm
+box [running in background]
+    create "Dispatcher" as dsp
+    strm -> dsp: start()
+end box
+collections "Cameras" as cams
+usr -> tag: startRecording()
+tag -> mq: enque(startRecording)
+activate mq
+dsp -> mq: deque(startRecording)
+
+par thread#1
+    dsp -> strm: dispatch(startRecording)
+    deactivate mq
+    strm -> cams: openStream()
+    cams --> strm: return(stream)
+    create entity "Media File" as vid
+    strm -> vid: encode()
+    activate vid
+end
+
+usr -> tag: stopRecording()
+tag -> mq: enque(stopRecording)
+activate mq
+dsp -> mq: deque(stopRecording)
+
+par thread#2
+    dsp -> strm: dispatch(stopRecording)
+    deactivate mq
+    strm -> cams: closeStream()
+    strm -> vid: saveFile()
+    deactivate vid
+end
+
+dsp -> mq: enque(notifyFileSaved{metadata})
+tag -> mq: deque(notifyFileSaved{metadata})
+
+@enduml

@@ -1,27 +1,49 @@
 @startuml Message Queue
 
-
+actor admin as "Admin"
+actor coach as "Coach"
 boundary emu as "Controller\n(emmulating Stream Deck)"
-create mq_emu as "MQ\n(Controller)"
+create mq_emu as "Dispatcher\n(Controller)"
 emu -> mq_emu: listen(port:8880)
+
 control srv as "Service\n(Win/Linux)"
-create mq_srv as "MQ\n(Service)"
+create mq_srv as "Dispatcher\n(Service)"
 srv -> mq_srv: listen(port:8880)
+
+boundary cns as "Consumers\n(iPad/Mobile/\nWin10 Editing app)"
+create mq_cns as "Dispatcher\n(Consumer)"
+cns -> mq_cns: listen(port:8880)
+
+mq_cns -> mq_srv: zmq(subscribe, {event, priority, token})
+
 boundary src as "Sources\n(Android/iOS)"
-create mq_src as "MQ\n(Source)"
+create mq_src as "Dispatcher\n(Source)"
 src -> mq_src: listen(port:8880)
 
-
-emu -> mq_emu: send(to:source, msg:start)
-mq_emu -> mq_src: zmq(msg:start)
-mq_src --> src: notify(received:start)
+admin -> emu: startRecording)
+emu --> mq_emu: send(to:source, msg:start)
+mq_emu --> mq_src: zmq(msg:start)
+mq_src --> src: dispatch(action:start)
 create entity vid as "Media File"
 src -> vid: create(metadata)
-src -> mq_src: send(to:<subscribers>, msg:{mediaAvailable, metadata})
+src -> mq_src: send(to:service, msg:{mediaAvailable, metadata})
+mq_src --> mq_srv: zmq(msg:{mediaAvailable, metadata})
 
-
-@enduml
-
-@startuml File Transfer
-
+mq_srv --> srv: dispatch(action:fetchMedia, metadata)
+srv -> src: fetchMedia(metadata)
+src --> srv: return(stream)
+srv -> mq_srv: send(to:<subscribers>, msg:{mediaAvailable}, metadata)
+mq_srv --> mq_cns: zmq(mediaAvailable, metadata)
+mq_cns -> cns: dispatch(showNewMedia)
+coach -> cns: open(mediaDetail)
+cns -> cns: showMediaDetail(metadata, thumbnails)
+coach -> cns: peek(atTime:[02:55:80], duration:[02:00])
+cns --> mq_cns: send(to:service, msg:{peek, atTime:[02:55:80], duration:[02:00]})
+mq_cns --> mq_srv: zmq(peek, atTime:[02:55:80], duration:[02:00])
+mq_srv -> srv: dispatch(createStreamServer, atTime:[02:55:80], duration:[02:00])
+create entity strm as "Streaming Server"
+srv -> strm: host(atTime:[02:55:80], duration:[02:00])
+srv -> mq_srv: send(to:<subscribers>, strm:{endpoint})
+mq_srv --> mq_cns: zmq(strm:{endpoint})
+mq_cns -> cns: dispatch(action:play, strm:{endpoint})
 @enduml

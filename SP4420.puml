@@ -10,7 +10,7 @@ nt -> qp: Init()
 boundary "Laptop/iPad\n(Consumers)" as cns
 cns -> qp: Subscribe()
 evgen -> nt: StartEvent(taggingData)
-create control "Queue" as q
+create entity "Queue" as q
 nt -> q: Add(startEventTaggingData)
 activate q
 hnote over evgen: after 5/10/20\nminutes

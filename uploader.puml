@@ -66,15 +66,17 @@ loop do while any file_chunks are pending
         activate srvep
 
         create "Client endpoint" as clnep
-        client -> clnep: CreateEP(server_ep_detail)
+        client -> clnep: CreateEP(server_ep_detail, secret)
         activate clnep
-        clnep -> srvep: << connect >>
+        clnep -> srvep: << connect(secret) >>
         srvep -> clnep: Fetch(chunk_info)
         clnep -> srvep: Upload(chunk)
+        clnep --> client: UpdateProgress(percentage_uploaded)
         srvep -> srvep: Verify(chunk_info)
         srvep -> fileBlob: Add(chunk)
         srvep --> chunkIndex: Update(chunk_info)
         activate fileBlob
+        clnep --> client: return(task_result)
         srvep --> clnep: << disconnect >>
         destroy clnep
         destroy srvep
@@ -84,6 +86,7 @@ server --> Repository:Save(fileBlob)
 server --> client:Response("upload_complete")
 client -> server: Request("close_session")
 server --> client: Response("okay")
+client --> app: return(upload_result)
 activate Repository
 deactivate server
 deactivate chunkIndex

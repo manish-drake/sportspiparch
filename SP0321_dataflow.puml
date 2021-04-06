@@ -1,0 +1,42 @@
+@startuml sp0321_dataflow
+actor "User" as user
+box Win10
+boundary stdk as "Stream Deck\n(Qt\Qml)" 
+end box
+
+box Android/iOS
+boundary spmob as "Mobile APP\n(Qt\Qml)"
+end box
+
+box Ubuntu Server
+control ftp as "FTP Server"
+control srv as "Service\n(Ubuntu)"
+end box
+
+box iOS
+boundary ipad as "iPad"
+end box
+
+ipad -> srv: subscribe(event)
+user -> stdk : Press("start")
+stdk -> spmob: sendMessage("StartRecording", event)
+create entity srcvid as "video.mp4"
+spmob -> srcvid: Read()
+user -> stdk: Press("stop")
+stdk -> spmob : sendMessage("stopRecording", event)
+spmob -> ftp: FTP(videoBlob)
+create entity ftpvid as "video.mp4"
+ftp -> ftpvid: Save()
+spmob -> srv: sendMessage("videoFTPd", "video.mp4", event)
+loop for all subscribers to event
+    srv -> ipad: sendMessage("videoUploaded", "video.mp4")
+end
+ipad -> ipad: display(metadata)
+user -> ipad: Press("downloadVideo", video.mp4)
+ipad -> ftp: fetchVideo("video.mp4")
+ftp --> ipad: return("video.mp4")
+ipad -> ipad: PlayVideo()
+
+
+
+@enduml

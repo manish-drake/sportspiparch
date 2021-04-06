@@ -1,0 +1,75 @@
+@startuml Mobile Device Requirements
+left to right direction
+actor "User" as u1
+actor "Recording Staff" as u2
+
+package Installation {
+    usecase "Easy Install from iOS" as u1uc1
+    usecase "Easy Install from Android" as u1uc2
+    usecase "International language Support" as u1uc3
+    usecase "User can completely delete application from device" as u1uc4
+}
+u1 --> u1uc1
+u1 --> u1uc2
+u1 --> u1uc3
+u1 --> u1uc4
+
+
+package "Camera Configuration" {
+    usecase u2uc1 as "<b>Ability to control camera resolution and frame rate</b>
+    ..<i>FEATURES</i>..
+    Select 480P (low resolution video is not needed)
+    --
+    Select 720P 30, 60, 120 FPS
+    --
+    Select 1080P 30, 60 and 120 FPS (120 Optional)
+    --
+    Select 4K, 30, 60 and 120 FPS (120 Optional)
+    --
+    Support H.264 AVC Encoding (MP4)
+    --
+    Support H.265 HEVC Encoding (MOV)"
+}
+u2 -->u2uc1
+
+package Constraints {
+    actor u3 as "App"
+    actor u4 as "Server"
+    usecase uc31 as "Read storage statistics"
+    usecase uc3 as "Set maximum duration of the recording"
+    u3 --> uc3
+    u3 -> uc31
+    u4 --> uc3
+    uc31 <|-- uc3
+}
+package Maintenance {
+    usecase uc4 as "List Pips with video properties"
+    usecase uc5 as "Completely delete Pips from device"
+    usecase uc6 as "Logging of app activity on device"
+    actor u5 as "User"
+    u5 --> uc4
+    u5 --> uc5
+    u5 --> uc6
+}
+
+package Tracking {
+    System --> (Acquire the GPS location when used)
+}
+
+package "Security and Identify" {
+    actor u6 as "App"
+    actor u7 as "System"
+    usecase uc7 as "Wi-Fi network to hide SSID; require password"
+    usecase uc8 as "Searches for Media Service on network"
+    usecase uc9 as "Connects to portable Win10 server"
+    usecase uc10 as "Connects to home Linux server"
+    usecase uc11 as "Communicates with server using JWT or equivalent"
+    u7 --> uc7
+    u6 --> uc8
+    u6 --> uc9
+    u6 --> uc10
+    u6 --> uc11
+}
+
+
+@enduml

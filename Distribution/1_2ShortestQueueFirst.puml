@@ -1,0 +1,49 @@
+@startuml Shortest Queue First
+title Shortest Queue First
+
+actor "User" as usr
+control "Tagging UI" as tag
+control "Streaming Service" as strm
+create control "Priority Algorithm" as algo    
+strm -> algo: invoke()
+control "Directory Service\n(gateway)" as dir
+collections "Consumers" as con
+collections "IP Cams" as ip
+con -> dir: register(profile)
+ip -> dir: register(profile)
+create entity "Client Registry" as reg
+dir -> reg: maintain()
+control "Proximity Service" as prox
+
+create entity "Client Record" as proxrec
+prox -> proxrec: create()
+prox -> ip: ping()
+ip --> prox: echo()
+prox -> proxrec: save(sourceProximity)
+loop forever
+    prox -> con: ping()
+    con --> prox: echo()
+    prox -> proxrec: save(consumerProximity)
+end
+group record and notify
+    usr -> tag: start()
+    note over tag,strm
+        This is where recoding
+        and file transfer happens
+        (as explained in 
+        1_1PrioritizationOfConsumers). 
+    end note
+    usr -> tag: end()  
+end
+strm -> reg: fetchPriority()
+reg --> strm: return(client, priority)
+strm -> proxrec: fetchProximity()
+proxrec --> strm: return(client, proximity)
+strm -> algo: generateOrder(client, priority, proximity)
+algo --> strm: return(order)  
+loop for all clients in order
+    strm -> con: transfer(mediaFile)
+end
+
+
+@enduml

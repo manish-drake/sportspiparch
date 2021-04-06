@@ -1,0 +1,57 @@
+@startuml
+title RXCALIBRATION
+actor User
+User -> "RxCal" as rx: run()
+boundary "Signal \nGenerator" as sigen
+rx -> sigen: CLEAR
+rx -> sigen: RESET
+rx -> sigen: AM_MOD(OFF)
+rx -> sigen: FM_MOD(OFF)
+rx -> sigen: PHM_MOD(OFF)
+rx -> sigen: PULSE_MOD(OFF)
+rx -> sigen: POW_OFFSET(OFF)
+rx -> sigen: SET_PWR_AMPL(0)
+rx -> sigen: SET_FREQ(1GHz)
+rx -> sigen: SET_RF_OUTP(ON)
+rx -> "DB" as db: fetchFreqList()
+db --> rx: return(list)  
+create entity "Freq List" as freqs
+rx -> freqs: create()
+rx -> "Hardware Client": powerHold(enable)
+loop for every freq-band
+
+    loop for every freq in band
+        rx -> sigen: SET_POW_AMPL(dB)
+        rx -> sigen: SET_FREQ(freq)
+        rx -> "BIT Client" as bit: runAlignment(freq)
+        rx -> "RF Client" as rf: txfreq(freq, 3125)
+        rx -> rf: rxread()
+        rf --> rx: return(rxADCAmpl)
+        rx -> rf: txattn(60, 60)
+
+        rx -> rf: rfinit()
+        rx -> rf: rxfreq(freq, 10)
+        rx -> rf: scopemode(Off)
+
+
+
+        loop for every route
+            rx -> rf: rfpath(route)
+            rx -> rf: rxread()
+            rf --> rx: return(rxADCRef)
+            rx -> db: getCharracterization(power, freq)
+            db --> rx: return(sgOut)
+            rx -> rx: calculateCorrectionFactor(rxADCRef, rxADCAmpl, power, sgOut)
+        end
+    end
+    rx -> rx: calculateThirdOrderPolynomialCoefs(band)
+end
+rx -> sigen: SET_PWR_AMPL(0)
+rx -> sigen: SET_FREQ(1GHz)
+rx -> sigen: SET_RF_OUTP(OFF)
+rx -> "Hardware Client": powerHold(disable)
+
+boundary "SDR-Omni" as dev
+
+
+@enduml

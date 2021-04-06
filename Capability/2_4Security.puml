@@ -1,0 +1,35 @@
+@startuml Security using JWT
+title Security using JWT
+actor "User" as user
+collections "Consumer Devices" as cons
+collections "Source Devices" as srcs
+control "Directory Service" as dir
+srcs -> dir: register(credentials)
+
+create "JWT Factory" as jwt
+dir -> jwt: init(signatureSecret, sources)
+jwt --> srcs: return(dictionary<jwt, requests>)
+create entity "Dictionary\n(jwt, requests)" as dict
+srcs -> dict: create()
+database "Roles &\nPermissions" as db
+user -> cons: openVideoThumbnail(metadata)
+cons -> dir: authenticate(credentials)
+dir -> db: fetchPermissions(credentials)
+db --> dir: return(role)
+dir -> jwt: createToken(role)
+loop for every Source
+    jwt -> jwt: create(encryptionMethod,\nrolePayload, signatureSecret)
+end
+jwt --> dir: return(jwtCollection)
+dir --> cons: return(jwtCollection)
+cons -> srcs: fetchVideoRequest(jwtCollection[src],\nmetadata)
+srcs -> dict: valdateRequest(jwt, request)
+dict --> srcs: return(validation)
+alt if request valdates
+    srcs --> cons: return(videoStream)
+    cons --> user: showVideo()
+else if authentication fails
+    srcs -> dir: invalidRequest(details)
+end
+
+@enduml

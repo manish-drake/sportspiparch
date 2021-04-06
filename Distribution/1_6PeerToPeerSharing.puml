@@ -1,0 +1,52 @@
+@startuml Peer to Peer Sharing
+title Peer to Peer Sharing
+actor "User" as usr
+boundary "Tagging UI" as tag
+boundary "IP Cams" as ip
+control "Streaming Service" as strm
+rnote over strm
+    Stores media_file_1
+    Stores media_file_2
+    Stores media_file_3
+end rnote
+group Record and Transfer
+    usr -> ip: start()
+    note over tag,strm
+    	The process till the streaming service 
+        is ready to send media to Coaches
+    end note
+    usr -> ip: stop()
+end
+control "Directory Service" as dir
+control "Proximity Service" as prox
+create entity "Proximity Record" as proxrec
+prox -> proxrec: maintain()
+note over prox,proxrec
+    Create and maintain the
+    proximity records as per
+    1_2ShortestQueueFirst.puml
+end note
+
+boundary "Coach 1\nTablets\Laptops" as c1
+hnote over c1: Requires media_file_1
+boundary "Coach 2\nTablets\Laptops" as c2
+boundary "Coach 3\nTablets\Laptops" as c3
+hnote over c3: Has media_file_1
+c1 -> dir: dispatchCommand(media_file_1)
+loop for all clients registered with directory service
+    dir -> strm: queriesFile(media_file_1)
+    dir -> c2: queriesFile(media_file_1)
+    dir -> c3: queriesFile(media_file_1)
+end
+dir -> proxrec: queriesClientProximity()
+proxrec --> dir: return(client, proximity)
+rnote over dir
+    Evaluate proximity as per
+    availability of media file
+end rnote
+dir --> c1: return(c3Endpoint, fileHandle)
+c1 -> c3: requestFile(media_file_1)
+c3 --> c1: return(fileStream)
+
+
+@enduml

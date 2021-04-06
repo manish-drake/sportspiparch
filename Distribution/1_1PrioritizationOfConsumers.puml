@@ -1,0 +1,42 @@
+@startuml 
+title Prioritization of the Consumers 
+    actor "User" as user
+    boundary "Directory Service" as dir
+    create entity "Client Registry" as reg
+    dir -> reg: create()
+    collections "Dispatch Services" as dispatch
+    boundary "Coaches iPads\n and Laptops" as coach
+    coach -> "Dispatch Service" as dispatch: command(directoryService, register, priority)
+    dispatch -> dir: command(register, client, priority)
+    
+    dispatch -> dir: fetchHandlers()
+    dir --> dispatch: return(clientAddresses)
+    
+    coach -> dispatch: command(directoryService, subscribe, event)
+    
+    dispatch -> dir: command(subscribe, client, event)
+    boundary "Tagging UI" as tag
+    user -> tag: start()
+    tag -> dispatch: command(streamingService, record)
+    dispatch -> "Streaming Service" as strm: command(record)
+    create "File Transfer\nclient" as ft
+    strm -> ft: create()
+    strm --> dispatch: notify(recordingStarts) 
+    boundary "IP Cam" as ip
+    strm -> ip: startRecording()
+    ip --> strm: return(rtspStream)
+    
+    user -> tag: stop()
+
+    tag -> dispatch: command(streamingService, save)
+    dispatch -> strm: command(save)
+    strm -> ip: endRecording()
+    strm -> strm: save()
+    strm --> dispatch: notify(recordingStops, fileHandle) 
+    dispatch -> ft: fetchVideo()
+    ft -> dir: fetchPriority(subscribers)
+    loop for all subscribers
+        ft --> dispatch: return(streamHandle)
+    end
+
+@enduml

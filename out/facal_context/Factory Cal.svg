@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1426px" preserveAspectRatio="none" style="width:1233px;height:1426px;" version="1.1" viewBox="0 0 1233 1426" width="1233px" zoomAndPan="magnify"><defs/><g><!--MD5=[d78b7d4520f68a5324d28d9df2e5c4e7]
+cluster facal--><rect fill="#FFFFFF" height="1177" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="988" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="76" x="463" y="23.5332">«boundary»</text><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="88" x="457" y="43.2188">Factory-Cal</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="51" x="475.5" y="59.1914">[System]</text><!--MD5=[44994df0ac92b8400875da76e0f29dd0]
+entity devcon--><rect fill="#999999" height="160.875" style="stroke:#8A8A8A;stroke-width:1.5;" width="220" x="539" y="701.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="104" x="597" y="723.957">«external_system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="67" x="615.5" y="743.2031">Dev-Con</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="651" y="761.252"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="178" x="560" y="778.8613">The console application that</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="174" x="560" y="796.4707">talks to the instruments and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="192" x="551" y="814.0801">can be used on the terminal to</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="189" x="552.5" y="831.6895">run any SCPI/VISA commands</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="200" x="549" y="849.2988">using FACAL command aliases.</text><!--MD5=[a8da65ca357dcb24b0d8f838e89eb93f]
+entity devcore--><path d="M27,707 C27,697 136,697 136,697 C136,697 245,697 245,707 L245,856.875 C245,866.875 136,866.875 136,866.875 C136,866.875 27,866.875 27,856.875 L27,707 " fill="#1168BD" style="stroke:#3C7FC0;stroke-width:1.5;"/><path d="M27,707 C27,717 136,717 136,717 C136,717 245,717 245,707 " fill="none" style="stroke:#3C7FC0;stroke-width:1.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="109.5" y="733.457">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="72" x="100" y="752.7031">Dev-Core</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="138" y="770.752"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="185" x="43.5" y="788.3613">Model classes for the project.</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="158" x="55" y="805.9707">These classes inherit the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="194" x="37" y="823.5801">PersistableBase class from the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="131" x="68.5" y="841.1895">Sqlite-core project to</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="122" x="75" y="858.7988">serialize/deserialize</text><!--MD5=[66604f4657ae186dc3955d7319b4f24f]
+entity devdata--><rect fill="#1168BD" height="143.2656" style="stroke:#3C7FC0;stroke-width:1.5;" width="212" x="767" y="1025"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="846.5" y="1047.457">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="70" x="838" y="1066.7031">Dev-Data</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="875" y="1084.752"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="150" x="798" y="1102.3613">The Parser classes that</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="179" x="781.5" y="1119.9707">manage and convert FACAL</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="179" x="781.5" y="1137.5801">based command aliases into</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="192" x="777" y="1155.1895">the device specific commands.</text><!--MD5=[76aeba0ab875879ea5d21554d0007a3a]
+entity model--><rect fill="#1168BD" height="143.2656" style="stroke:#3C7FC0;stroke-width:1.5;" width="218" x="323" y="379"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="405.5" y="401.457">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="81" x="391.5" y="420.7031">Dev-Model</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="434" y="438.752"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="190" x="337" y="456.3613">The controller classes that act</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="181" x="339.5" y="473.9707">as a coupling between the UI</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="174" x="343" y="491.5801">and the data &amp; client/server</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="51" x="406.5" y="509.1895">classes.</text><!--MD5=[bf1b4add2ee2e1b53e65912b20fb7ef4]
+entity ui--><rect fill="#1168BD" height="143.2656" style="stroke:#3C7FC0;stroke-width:1.5;" width="210" x="115" y="78"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="193.5" y="100.457">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="51" x="194.5" y="119.7031">Dev-UI</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="222" y="137.752"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="182" x="129" y="155.3613">All the UI related classes and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="182" x="127" y="172.9707">scripts required to create the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="157" x="139.5" y="190.5801">screens and handle user</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="177" x="131.5" y="208.1895">interaction in the application</text><!--MD5=[95e797a9df3a2e6815f040e8c1644678]
+entity sql--><rect fill="#1168BD" height="125.6563" style="stroke:#3C7FC0;stroke-width:1.5;" width="218" x="23" y="1033.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="105.5" y="1055.957">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="85" x="89.5" y="1075.2031">Sqlite-Core</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="134" y="1093.252"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="182" x="41" y="1110.8613">A sqlite framework facilitating</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="194" x="33" y="1128.4707">CRUD operations run on Sqlite</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="23" x="120.5" y="1146.0801">DB.</text><!--MD5=[4a65e84059005d12693a083370a06717]
+entity client--><rect fill="#1168BD" height="143.2656" style="stroke:#3C7FC0;stroke-width:1.5;" width="219" x="512.5" y="1025"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="595.5" y="1047.457">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="70" x="587" y="1066.7031">TS-Client</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="624" y="1084.752"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="155" x="544.5" y="1102.3613">The client code handling</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="190" x="525" y="1119.9707">communication between Facal</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="199" x="522.5" y="1137.5801">applicatioon and the SDR-Omni</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="583" y="1155.1895">(test-)server</text><!--MD5=[4438ae83e48b57eeefb1c5058408f0bc]
+entity comms--><rect fill="#1168BD" height="160.875" style="stroke:#3C7FC0;stroke-width:1.5;" width="219" x="284.5" y="701.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="367.5" y="723.957">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="85" x="351.5" y="743.2031">TS-Comms</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="396" y="761.252"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="191" x="298.5" y="778.8613">The test-module wise grouped</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="199" x="294.5" y="796.4707">controller classes with functions</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="160" x="312" y="814.0801">to organize Tests specific</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="190" x="297" y="831.6895">communication between Facal</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="177" x="305.5" y="849.2988">and SDR-Omni (test-)server</text><!--MD5=[703ea5a149c5871c74522bf38bdfe548]
+entity data--><rect fill="#1168BD" height="143.2656" style="stroke:#3C7FC0;stroke-width:1.5;" width="201" x="276.5" y="1025"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="350.5" y="1047.457">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="61" x="346.5" y="1066.7031">TS-Data</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="379" y="1084.752"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="139" x="307.5" y="1102.3613">A wrapper project with</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="177" x="286.5" y="1119.9707">SDR-Omni messages pulled</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="167" x="291.5" y="1137.5801">from data repository of the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="110" x="322" y="1155.1895">testserver project</text><!--MD5=[b5e8a908e37e589ff1353aa5fb99b9b0]
+entity ts--><rect fill="#999999" height="108.0469" style="stroke:#8A8A8A;stroke-width:1.5;" width="217" x="513.5" y="1312"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="104" x="570" y="1334.457">«external_system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="88" x="578" y="1353.7031">Test-Server</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="624" y="1371.752"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="193" x="527.5" y="1389.3613">The server application running</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="156" x="544" y="1406.9707">on the SDR-Omni device</text><!--MD5=[d747d3941fab0b1c871f78dd7a11e276]
+entity instr--><rect fill="#999999" height="125.6563" style="stroke:#8A8A8A;stroke-width:1.5;" width="213" x="1014.5" y="1033.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="104" x="1069" y="1055.957">«external_system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="148" x="1047" y="1075.2031">Calibration Devices</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="1123" y="1093.252"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="185" x="1028.5" y="1110.8613">The Signal Generators or the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="167" x="1035.5" y="1128.4707">Power Meters or any other</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="173" x="1034.5" y="1146.0801">devices used for calibration</text><!--MD5=[b61192998642d624761affc7ff1a68fa]
+link ui to model--><path d="M270.241,221.36 C302.986,267.54 345.655,327.72 378.948,374.68 " fill="none" id="ui-to-model" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="381.936,378.89,380.0031,369.2327,379.0481,374.8083,373.4724,373.8533,381.936,378.89" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="144" x="359" y="265.4951">Uses the complex data</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="148" x="359" y="281.8467">objects provided by the</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="137" x="362.5" y="298.1982">project to show to the</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="361.5" y="314.5498">user and listens to the</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="99" x="383.5" y="330.9014">user interaction</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="72" x="397" y="346.2148">[C++/Qt/QML]</text><!--MD5=[8146f431ac1f6c2a1306c01fae5d2123]
+link devcore to sql--><path d="M130.255,867.02 C129.738,877.118 129.298,887.288 129,897 C127.665,940.535 128.35,951.449 129,995 C129.16,1005.746 129.417,1017.137 129.715,1028.24 " fill="none" id="devcore-to-sql" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="129.854,1033.318,133.6057,1024.2117,129.7169,1028.3199,125.6087,1024.4311,129.854,1033.318" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="95" x="155" y="919.4951">Uses the API of</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="133" y="935.8467">Sqlite-core to perform</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="145" x="130" y="952.1982">CRUD operation on the</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="56" x="176.5" y="968.5498">sqlite DB</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="62" x="173.5" y="983.8633">[C/C++/Sql]</text><!--MD5=[b883920f2b32f0ef74c0b25ea217dab6]
+link model to devcore--><path d="M322.87,507.668 C287.049,526.772 254.634,545.06 248,552 C210.229,591.512 182.834,646.201 164.595,692.226 " fill="none" id="model-to-devcore" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="162.748,696.936,169.7576,690.0175,164.5734,692.2811,162.3098,687.0969,162.748,696.936" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="150" x="249" y="566.4951">Uses the core classes to</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="252" y="582.8467">create collections that</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="102" x="271" y="599.1982">can be viewd or</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="130" x="257" y="615.5498">modified by the user</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="148" x="250" y="631.9014">and later saved back to</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="42" x="303" y="648.2529">the DB</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="44" x="302" y="663.5664">[C++/Qt]</text><!--MD5=[e875809228fb0d90b18920612a3869d8]
+link model to devcon--><path d="M541.24,515.716 C554.181,526.613 566.234,538.747 576,552 C607.167,594.298 625.335,650.386 635.751,696.466 " fill="none" id="model-to-devcon" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="636.859,701.462,638.815,691.8093,635.7762,696.5807,631.0048,693.5419,636.859,701.462" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="106" x="643.5" y="574.9951">Uses the console</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="133" x="630" y="591.3467">application to invoke</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="130" x="631.5" y="607.6982">commands and read</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="135" x="629" y="624.0498">results to further pass</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="662" y="640.4014">on to the UI</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="44" x="676.5" y="655.7148">[Qt/C++]</text><!--MD5=[0453b91526d569c4700ca0b804acee7c]
+link model to comms--><path d="M423.848,522.186 C417.964,573.204 409.993,642.32 403.769,696.295 " fill="none" id="model-to-comms" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="403.172,701.469,408.1768,692.9865,403.7448,696.5019,400.2295,692.07,403.172,701.469" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="122" x="431" y="582.9951">Uses the Ts-Comms</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="115" x="434.5" y="599.3467">project to execute</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="447.5" y="615.6982">commands on</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="421" y="632.0498">SDR-Omni (test-)server.</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="44" x="472" y="647.3633">[C++/Qt]</text><!--MD5=[95d18289a001399ce188c73789024c7f]
+link comms to client--><path d="M452.849,862.734 C460.075,873.977 467.011,885.594 473,897 C494.643,938.22 483.703,956.581 510,995 C516.087,1003.893 523.12,1012.529 530.637,1020.761 " fill="none" id="comms-to-client" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="534.364,1024.769,531.1632,1015.4548,530.9586,1021.1079,525.3055,1020.9034,534.364,1024.769" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="141" x="513" y="919.4951">Uses the client classes</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="100" x="533.5" y="935.8467">to actually send</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="145" x="511" y="952.1982">messages to the server</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="83" x="544" y="968.5498">over network</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="57" x="557" y="983.8633">[C++/ZMQ]</text><!--MD5=[e61a1c3bd37769c64e7c2b7e04925a3c]
+link devcon to devdata--><path d="M661.471,862.7 C670.695,913.65 684.338,973.978 700,995 C701.328,996.783 729.275,1013.22 762.333,1032.303 " fill="none" id="devcon-to-devdata" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="766.814,1034.888,761.0179,1026.9253,762.4833,1032.389,757.0195,1033.8544,766.814,1034.888" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="120" x="714" y="919.4951">Uses the command</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="701" y="935.8467">parser to convert Facal</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="715" y="952.1982">aliases into device</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="121" x="715.5" y="968.5498">specific commands</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="29" x="761.5" y="983.8633">[C++]</text><!--MD5=[5cdaa5c880ab25de335639698f598282]
+link model to devdata--><path d="M541.365,455.338 C617.763,463.938 716.534,487.899 777,552 C884.937,666.427 831.674,741.59 856,897 C859.605,920.033 864.128,973.85 867.601,1019.644 " fill="none" id="model-to-devdata" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="867.998,1024.9,871.3104,1015.6249,867.6223,1019.9141,863.333,1016.226,867.998,1024.9" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="112" x="869" y="755.4951">Uses the resource</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="133" x="858.5" y="771.8467">entity that represents</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="144" x="853" y="788.1982">the calibration devices</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="854" y="804.5498">available to the system</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="44" x="905" y="819.8633">[Qt/C++]</text><!--MD5=[c34fcebc7818c28afb793ad04259a5e2]
+link comms to data--><path d="M334.384,862.71 C328.507,873.771 323.45,885.348 320,897 C307.634,938.763 308.888,952.886 320,995 C322.245,1003.51 325.395,1012.054 329.074,1020.372 " fill="none" id="comms-to-data" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="331.169,1024.968,331.0741,1015.1196,329.0944,1020.4187,323.7953,1018.439,331.169,1024.968" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="333.5" y="911.4951">Uses the testserver</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="147" x="321" y="927.8467">based message classes</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="133" x="326" y="944.1982">to communicate with</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="348" y="960.5498">the SDR-Omni</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="358" y="976.9014">(test-)server</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="29" x="380" y="992.2148">[C++]</text><!--MD5=[1180afffab19eb3df7267d5391c7de6c]
+link ui to devcore--><path d="M194.416,221.25 C179.497,265.87 161.912,325.06 153,379 C135.423,485.385 132.862,609.633 133.599,691.523 " fill="none" id="ui-to-devcore" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="133.652,696.855,137.5618,687.8154,133.602,691.8553,129.5622,687.8955,133.652,696.855" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="150" x="154" y="407.4951">Uses the data classes to</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="78" x="188" y="423.8467">serialize the</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="132" x="161" y="440.1982">prerequisite settings,</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="138" x="158" y="456.5498">report formats and for</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="148" x="155" y="472.9014">some screens the UI for</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="195" y="489.2529">the project</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="44" x="207" y="504.5664">[C++/Qt]</text><!--MD5=[d7695695729a61e35e4d2add0a59eb55]
+link client to ts--><path d="M622,1168.132 C622,1211.241 622,1265.699 622,1306.406 " fill="none" id="client-to-ts" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="622,1311.804,626,1302.804,622,1306.804,618,1302.804,622,1311.804" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="135" x="628.5" y="1214.4951">Exchanges messages</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="623" y="1230.8467">between the Facal app</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="117" x="637.5" y="1247.1982">and the SDR-Omni</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="661.5" y="1263.5498">(test-)server</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="29" x="683.5" y="1278.8633">[C++]</text><!--MD5=[bec6e262a86aff7426d4fb3581d7496f]
+link devcon to instr--><path d="M759.15,852.666 C768.135,857.694 777.159,862.536 786,867 C817.679,882.996 829.161,879.438 860,897 C926.895,935.096 995.94,988.332 1046.21,1030.084 " fill="none" id="devcon-to-instr" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1050.1,1033.323,1045.7435,1024.49,1046.2577,1030.1235,1040.6243,1030.6377,1050.1,1033.323" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="135" x="1005.5" y="926.9951">Exchanges messages</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="1000" y="943.3467">between the Facal app</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="120" x="1013" y="959.6982">and the calibration</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="48" x="1051" y="976.0498">devices</text><!--MD5=[9a2f9d8ddb15bb787af6fc9370d14d65]
+@startuml Factory Cal
+ !include ../c4puml-cn/c4puml/C4_Component.puml
+
+
+System_Boundary(facal, "Factory-Cal"){
+    System_Ext(devcon, "Dev-Con", "The console application that talks to the instruments and can be used on the terminal to run any SCPI/VISA commands using FACAL command aliases.")
+    SystemDb(devcore, "Dev-Core", "Model classes for the project. These classes inherit the PersistableBase class from the Sqlite-core project to serialize/deserialize")
+    System(devdata, "Dev-Data", "The Parser classes that manage and convert FACAL based command aliases into the device specific commands.")
+    System(model, "Dev-Model", "The controller classes that act as a coupling between the UI and the data & client/server classes.")
+    System(ui, "Dev-UI", "All the UI related classes and scripts required to create the screens and handle user interaction in the application")
+    System(sql, "Sqlite-Core", "A sqlite framework facilitating CRUD operations run on Sqlite DB.")
+    System(client, "TS-Client", "The client code handling communication between Facal applicatioon and the SDR-Omni (test-)server")
+    System(comms, "TS-Comms", "The test-module wise grouped controller classes with functions to organize Tests specific communication between Facal and SDR-Omni (test-)server")
+    System(data, "TS-Data", "A wrapper project with SDR-Omni messages pulled from data repository of the testserver project")
+
+    Rel(ui, model, "Uses the complex data objects provided by the project to show to the user and listens to the user interaction", "C++/Qt/QML")
+    Rel(devcore, sql, "Uses the API of Sqlite-core to perform CRUD operation on the sqlite DB", "C/C++/Sql")
+    Rel(model, devcore, "Uses the core classes to create collections that can be viewd or modified by the user and later saved back to the DB", "C++/Qt")
+    Rel(model, devcon, "Uses the console application to invoke commands and read results to further pass on to the UI", "Qt/C++")
+    Rel(model, comms, "Uses the Ts-Comms project to execute commands on SDR-Omni (test-)server.", "C++/Qt")
+    Rel(comms, client, "Uses the client classes to actually send messages to the server over network", "C++/ZMQ")
+    Rel(devcon, devdata, "Uses the command parser to convert Facal aliases into device specific commands", "C++")
+    Rel(model, devdata, "Uses the resource entity that represents the calibration devices available to the system", "Qt/C++")
+    Rel(comms, data, "Uses the testserver based message classes to communicate with the SDR-Omni (test-)server", "C++")
+    Rel(ui, devcore, "Uses the data classes to serialize the prerequisite settings, report formats and for some screens the UI for the project", "C++/Qt")
+}
+
+System_Ext(ts, "Test-Server", "The server application running on the SDR-Omni device")
+System_Ext(instr, "Calibration Devices", "The Signal Generators or the Power Meters or any other devices used for calibration")
+Rel(client, ts, "Exchanges messages between the Facal app and the SDR-Omni (test-)server", "C++")
+Rel(devcon, instr, "Exchanges messages between the Facal app and the calibration devices")
+
+
+
+
+
+ @enduml
+
+@startuml Factory Cal
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam rectangle {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam database {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam Arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam rectangle<<boundary>> {
+    Shadowing false
+    StereotypeFontSize 0
+    FontColor #444444
+    BorderColor #444444
+    BorderStyle dashed
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+skinparam rectangle<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+skinparam rectangle<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+skinparam database<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+skinparam database<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+skinparam database<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<component>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+
+skinparam database<<component>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+
+
+
+
+
+
+
+rectangle "==Factory-Cal\n<size:12>[System]</size>" <<boundary>> as facal{
+    rectangle "==Dev-Con\n\n The console application that talks to the instruments and can be used on the terminal to run any SCPI/VISA commands using FACAL command aliases." <<external_system>> as devcon
+    database "==Dev-Core\n\n Model classes for the project. These classes inherit the PersistableBase class from the Sqlite-core project to serialize/deserialize" <<system>> as devcore
+    rectangle "==Dev-Data\n\n The Parser classes that manage and convert FACAL based command aliases into the device specific commands." <<system>> as devdata
+    rectangle "==Dev-Model\n\n The controller classes that act as a coupling between the UI and the data & client/server classes." <<system>> as model
+    rectangle "==Dev-UI\n\n All the UI related classes and scripts required to create the screens and handle user interaction in the application" <<system>> as ui
+    rectangle "==Sqlite-Core\n\n A sqlite framework facilitating CRUD operations run on Sqlite DB." <<system>> as sql
+    rectangle "==TS-Client\n\n The client code handling communication between Facal applicatioon and the SDR-Omni (test-)server" <<system>> as client
+    rectangle "==TS-Comms\n\n The test-module wise grouped controller classes with functions to organize Tests specific communication between Facal and SDR-Omni (test-)server" <<system>> as comms
+    rectangle "==TS-Data\n\n A wrapper project with SDR-Omni messages pulled from data repository of the testserver project" <<system>> as data
+
+    ui - -> model : "===Uses the complex data objects provided by the project to show to the user and listens to the user interaction\n//<size:12>[C++/Qt/QML]</size>//"
+    devcore - -> sql : "===Uses the API of Sqlite-core to perform CRUD operation on the sqlite DB\n//<size:12>[C/C++/Sql]</size>//"
+    model - -> devcore : "===Uses the core classes to create collections that can be viewd or modified by the user and later saved back to the DB\n//<size:12>[C++/Qt]</size>//"
+    model - -> devcon : "===Uses the console application to invoke commands and read results to further pass on to the UI\n//<size:12>[Qt/C++]</size>//"
+    model - -> comms : "===Uses the Ts-Comms project to execute commands on SDR-Omni (test-)server.\n//<size:12>[C++/Qt]</size>//"
+    comms - -> client : "===Uses the client classes to actually send messages to the server over network\n//<size:12>[C++/ZMQ]</size>//"
+    devcon - -> devdata : "===Uses the command parser to convert Facal aliases into device specific commands\n//<size:12>[C++]</size>//"
+    model - -> devdata : "===Uses the resource entity that represents the calibration devices available to the system\n//<size:12>[Qt/C++]</size>//"
+    comms - -> data : "===Uses the testserver based message classes to communicate with the SDR-Omni (test-)server\n//<size:12>[C++]</size>//"
+    ui - -> devcore : "===Uses the data classes to serialize the prerequisite settings, report formats and for some screens the UI for the project\n//<size:12>[C++/Qt]</size>//"
+}
+
+rectangle "==Test-Server\n\n The server application running on the SDR-Omni device" <<external_system>> as ts
+rectangle "==Calibration Devices\n\n The Signal Generators or the Power Meters or any other devices used for calibration" <<external_system>> as instr
+client - -> ts : "===Exchanges messages between the Facal app and the SDR-Omni (test-)server\n//<size:12>[C++]</size>//"
+devcon - -> instr : "===Exchanges messages between the Facal app and the calibration devices"
+
+
+
+
+
+ @enduml
+
+PlantUML version 1.2020.22(Sun Dec 06 15:06:27 IST 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: IN
+--></g></svg>

@@ -1,7 +1,7 @@
 @startuml Playback & Review
 !include ../C4-PlantUML/C4_Component.puml
 
-LAYOUT_TOP_DOWN
+' LAYOUT_TOP_DOWN
 
 Person(coach, "Coach", "The primary activities of a coach include tagging, review and PIP generation")
 System_Boundary(review, "Playback & Review"){

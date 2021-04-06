@@ -1,0 +1,54 @@
+@startuml Mobile Phone under Manual Control 
+title Mobile Phone under Manual Control 
+actor "User" as usr
+boundary "Mobile App" as app
+app -> "Azure Service" as azr: register(user, pwd)
+usr -> app: createNewMatrix()
+create entity "Matrix" as mtx
+app -> mtx: create()
+usr -> app: record()
+app -> mtx: createVideoSink()
+usr -> app: stop()
+app -> mtx: saveVideo(url)
+usr -> app: uploadMatrix(metadata)
+app -> azr: upload(matrix{metadata, media})
+azr --> app: return(azureVideoUrl)
+@enduml
+
+
+
+
+@startuml Mobile Phone under Server Control 
+
+title Mobile Phone under Server Control 
+actor "User" as usr
+control "Control Domain" as ctrl
+
+control "Directory Service" as dir
+boundary "Mobile" as mbl
+create control "Dispatch" as dspm
+mbl -> dspm: launch()
+dspm -> dir: register(endpoint)
+
+ctrl -> dir: fetchSources()
+dir --> ctrl: return(endpoint)
+ctrl -> ctrl: populateSources(enpoints)
+
+activate ctrl
+usr -> ctrl: startRecoring(selectedCams)
+ctrl -> dspm: command(record, metadata)
+dspm -> mbl: record()
+create entity "File Sink" as snk
+mbl -> snk: create()
+usr -> ctrl: stopRecording()
+ctrl -> dspm: command(save)
+deactivate ctrl
+
+dspm -> mbl: save()
+create control "Transfer Agent" as trsfr
+mbl -> trsfr: host(videoFileUrl)
+dspm --> ctrl: command(endpoint, fileUrl)
+ctrl -> trsfr: fetchVideo(url)
+trsfr --> ctrl: return(videoStream)
+
+@enduml

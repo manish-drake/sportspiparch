@@ -1,0 +1,73 @@
+@startuml On-Demand Recording
+title On-Demand Recording
+actor "Coach" as ch
+boundary "Tagging UI/\nMobile App" as tag
+box Control Domain
+control "Security Gateway" as security
+tag -> security: autheticate(ID)
+security --> tag: return(token)
+control "Streaming Service" as strm
+end box
+boundary "IP Cam" as cam
+ch -> tag: start()
+tag -> strm: record(token)
+strm --> tag: return(mediaID)
+strm -> cam: fetchStream()
+cam --> strm: return(stream)
+create entity "Video File" as vid
+strm -> vid: encode()
+ch -> tag: stop()
+tag -> strm: save(mediaID)
+strm -> vid: saveAs(mediaID)
+strm --> tag: notify(saveComplete, mediaID)
+tag -> "Win10 App\n(SportsPIP)" as win10: getEditorURL()
+win10 --> tag: return(editorURL)
+tag -> strm: move(editorUrl, mediaID)
+strm --> win10: return(thumbnail, metadata, token)
+ch -> win10: open(metadata)
+win10 -> strm: fetchVideo(fileUrl, token)
+strm --> win10: return(fileStream) 
+
+@enduml
+
+@startuml Scheduled Events
+title Scheduled Events
+actor "Recording Staff" as user
+actor "Coach" as coach
+collections "IP/Mobile Cams" as cam
+collections "Consumer Apps" as ch
+ch -> "Security Gateway" as security: authenticate(ID)
+security --> ch: return(token)
+control "Control Domain\n(win10/linux)" as ctrl
+create "Streaming Service\n(encoder)" as strm
+ctrl -> strm: host(sources{endpoints})
+cam -> ctrl: register(endpoint)
+ch -> ctrl: register(token, priority)
+user -> ctrl: createEvent(configuration{description, sources, consumers{priorities}})
+ctrl --> ctrl: create(newEvent)
+activate ctrl
+user -> ctrl: start(newEvent)
+ctrl -> strm: encode()
+ctrl --> ch: notify(recording)
+user -> ctrl: stop(newEvent)
+deactivate ctrl
+ctrl -> strm: saveAs(mediaID)
+create entity "Media\n(mediaID)" as media
+strm -> media: save(mediaID)
+create "Transfer Service" as transfer
+ctrl -> transfer: host(mediaID, consumers{token, priority})
+ctrl --> ch: notify(newMediaAvailable, mediaID, transferServiceEndpoint)
+alt auto-download enabled
+    ch -> transfer: fetchMedia(token, mediaID)
+    transfer --> ch: returnByPriority(mediaStream)
+else manual-download enabled 
+    coach -> ch: showMedia(token)
+    ch -> transfer: fetchMedia(token, mediaID)
+    transfer --> ch: returnByPriority(mediaStream)
+end
+
+
+
+
+@enduml
+

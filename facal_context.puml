@@ -1,5 +1,6 @@
 @startuml Factory Cal
- !include ../c4puml-cn/c4puml/C4_Component.puml
+ !include ../C4-PlantUML/C4_Component.puml
+ ' !include ../c4puml-cn/c4puml/C4_Component.puml
 
 
 System_Boundary(facal, "Factory-Cal"){

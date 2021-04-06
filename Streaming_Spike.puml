@@ -1,0 +1,51 @@
+@startuml STRAEMING_SPIKE 
+title Tagging, STRAPI and Streaming (Spike)
+
+actor "User" as usr
+boundary "Tagging UI" as tag
+boundary "Source" as src
+    usr -> src: start()
+  activate src
+    src --> src: Record()
+    usr -> src: stop()
+    create entity Tar as tar
+    src -> tar: Create(Media, [Tags], Metadata) 
+box LINUX SERVER
+    control "SortsPIP Service" as srv
+    collections STRAPI as strapi
+    control "FTP Service" as ftp
+  deactivate src
+    src -> ftp: FTP(tar)
+    create entity Tar as tarUp
+    ftp -> tarUp: save()
+    src -> srv: sendMessage("tarFTPComplete", ["fileName.tar"])
+    srv -> tarUp: Untar("fileName.tar")
+    create control "Streaming Server" as strm
+end box
+srv -> strm: host("pathToMediaRepository")
+tarUp --> strapi: Save(Media, [Tags], Metadata)
+srv -> tarUp !!: delete()
+destroy tarUp
+
+boundary "Coaches'\nTablets\Laptops" as tab
+srv -> tab: sendMessage("newPIPAvailable", "pip_id")
+tab -> strapi: fetchMetadata("pip_id")
+strapi --> tab: return(metadata)
+activate tab
+tab -> tab: DisplayStrapiPage(metadata, tags)
+actor "Coach" as coach
+coach -> tab: Open("pip_id")
+deactivate tab
+tab -> srv: sendMessage("streamMedia", "pip_id")
+srv --> tab: return(streamURL, [Tags])
+tab -> strm: OpenURL(streamURL)
+strm --> tab: stream("00:00")
+activate tab
+tab -> tab: LoadTags()
+coach -> tab: selectTag(tag)
+tab --> strm: move(tag)
+strm --> tab: stream(tag.offset)
+deactivate tab 
+
+
+@enduml
